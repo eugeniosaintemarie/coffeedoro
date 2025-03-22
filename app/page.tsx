@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-black p-4">
       <div className="w-full max-w-md flex flex-col items-center gap-8">
-        <CoffeeCup percentage={percentage} isWorking={isWorking} />
+        <CoffeeCup percentage={percentage} isWorking={isWorking} isActive={isActive} />
 
         <div className="flex items-center gap-4 mt-4">
           <button
