@@ -11,25 +11,28 @@ const CoffeeCup: FC<CoffeeCupProps> = ({ percentage, isWorking }) => {
 
   return (
     <div className="relative flex items-center justify-center my-8">
-      <div className="cup relative w-[220px] h-[180px] border-[8px] border-[#CFD8DC] shadow-cup rounded-[10px_10px_60px_75px] overflow-hidden">
-        {/* Steam elements */}
-        <span className="steam"></span>
-        <span className="steam"></span>
-        <span className="steam"></span>
+      {/* Steam elements - positioned outside the cup */}
+      <div className="relative">
+        <div className="cup relative w-[220px] h-[180px] border-[8px] border-[#CFD8DC] shadow-cup rounded-[10px_10px_60px_60px] overflow-hidden">
+          {/* Steam elements */}
+          <span className="steam"></span>
+          <span className="steam"></span>
+          <span className="steam"></span>
 
-        {/* Cup handle */}
-        <div className="cup-handle"></div>
+          {/* Cup handle */}
+          <div className="cup-handle"></div>
 
-        {/* Coffee liquid */}
-        <div
-          className="absolute bottom-0 left-0 right-0 bg-[#795548] transition-all duration-1000 ease-linear"
-          style={{ 
-            height: liquidHeight,
-            backgroundImage: isWorking ? 'url("/coffee-pattern.png")' : 'none',
-            backgroundRepeat: 'repeat-x',
-            animation: isWorking ? 'filling 4s infinite' : 'none'
-          }}
-        ></div>
+          {/* Coffee liquid */}
+          <div
+            className="absolute bottom-0 left-0 right-0 bg-[#795548] transition-all duration-1000 ease-linear"
+            style={{ 
+              height: liquidHeight,
+              backgroundImage: isWorking ? 'url("/coffee-pattern.png")' : 'none',
+              backgroundRepeat: 'repeat-x',
+              animation: isWorking ? 'filling 4s infinite' : 'none'
+            }}
+          ></div>
+        </div>
       </div>
     </div>
   )
