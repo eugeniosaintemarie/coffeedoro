@@ -111,24 +111,14 @@ body {
   width: 220px;
   height: 180px;
   border: 8px solid #F5F5F5;
-  box-shadow: 0 0 0 12px #352a22;
   border-radius: 10px 10px 60px 75px;
   background: url("/coffee-pattern.png");
   background-repeat: repeat-x;
   background-position: 0 130px;
-  animation: filling 4s infinite;
+  background-color: #795548;
 }
 
-@keyframes filling {
-  0%, 100% {
-    background-position: 0 130px;
-    background-color: #795548;
-  }
-  50% {
-    background-position: 600px -70px;
-    background-color: #795548;
-  }
-}
+
 
 .cup .cup-handle {
   position: absolute;
@@ -145,6 +135,7 @@ body {
   border-radius: 10px 2px;
   width: 8px;
   animation: steaming 2s infinite;
+  background: #CFD8DC;
 }
 
 @keyframes steaming {
@@ -162,7 +153,7 @@ body {
   top: -70px;
   left: 65px;
   height: 30px;
-  background: #8e5a3423;
+  opacity: 0.3;
   animation-delay: 0.2s;
 }
 
@@ -170,7 +161,7 @@ body {
   top: -120px;
   left: 95px;
   height: 50px;
-  background: #8e5a3454;
+  opacity: 0.5;
   animation-delay: 0.6s;
 }
 
@@ -178,7 +169,7 @@ body {
   top: -90px;
   left: 125px;
   height: 40px;
-  background: #8e5a3433;
+  opacity: 0.4;
   animation-delay: 1s;
 }
 
