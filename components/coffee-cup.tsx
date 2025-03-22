@@ -17,7 +17,8 @@ const CoffeeCup: FC<CoffeeCupProps> = ({ percentage, isWorking, isActive }) => {
       <div 
         className="cup"
         style={{
-          backgroundPosition: backgroundPosition
+          backgroundPosition: backgroundPosition,
+          transition: "background-position 0.5s ease-in-out"
         }}
       >
         {isActive && (
