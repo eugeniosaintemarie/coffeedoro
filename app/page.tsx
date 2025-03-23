@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import CoffeeCup from "@/components/coffee-cup"
 import TimeInputs from "@/components/time-inputs"
 import { Play, RotateCcw } from "lucide-react"
-import CupAnimation from './cupAnimation.js';
 
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
   const [percentage, setPercentage] = useState(100)
 
   const timerRef = useRef<NodeJS.Timeout | null>(null)
-  const cupAnimationRef = useRef<CupAnimation | null>(null)
 
   // Función para reiniciar el temporizador con los valores actuales
   const resetTimer = useCallback(() => {
@@ -27,11 +25,6 @@ export default function Home() {
     setIsWorking(true)
     setTimeLeft(workTime * 60)
     setPercentage(100)
-    
-    // Detener y reiniciar la animación de la taza
-    if (cupAnimationRef.current) {
-      cupAnimationRef.current.stop()
-    }
   }, [workTime])
 
   // Función para manejar cambios en los inputs
@@ -53,22 +46,9 @@ export default function Home() {
                 setIsWorking(false)
                 setTimeLeft(breakTime * 60)
                 setIsActive(true)
-                
-                // Cambiar a modo descanso en la animación
-                if (cupAnimationRef.current) {
-                  cupAnimationRef.current.stop()
-                  cupAnimationRef.current.refill(breakTime * 60)
-                }
-                
                 return breakTime * 60
               } else {
                 setIsActive(false)
-                
-                // Detener la animación
-                if (cupAnimationRef.current) {
-                  cupAnimationRef.current.stop()
-                }
-                
                 return 0
               }
             } else {
@@ -77,12 +57,6 @@ export default function Home() {
               setIsWorking(true)
               setTimeLeft(workTime * 60)
               setIsActive(false)
-              
-              // Detener la animación
-              if (cupAnimationRef.current) {
-                cupAnimationRef.current.stop()
-              }
-              
               return workTime * 60
             }
           }
@@ -91,11 +65,6 @@ export default function Home() {
       }, 1000)
     } else if (timerRef.current) {
       clearInterval(timerRef.current)
-      
-      // Detener la animación cuando se detiene el temporizador
-      if (cupAnimationRef.current) {
-        cupAnimationRef.current.pause()
-      }
     }
 
     return () => {
@@ -118,53 +87,15 @@ export default function Home() {
     }
   }, [timeLeft, workTime, breakTime, isWorking])
   
-  // Inicializar la animación de la taza cuando el componente se monte
-  useEffect(() => {
-    // Esperamos a que el DOM esté listo para inicializar la animación
-    if (typeof window !== 'undefined') {
-      // Inicializamos la animación cuando el componente se monta
-      setTimeout(() => {
-        cupAnimationRef.current = new CupAnimation('.cup', workTime * 60)
-        
-        // Aseguramos que la taza esté llena al inicio
-        if (cupAnimationRef.current) {
-          cupAnimationRef.current.setCoffeeHeight(130);
-        }
-      }, 500) // Pequeño retraso para asegurar que el DOM está listo
-    }
-    
-    return () => {
-      // Limpiamos la animación cuando el componente se desmonta
-      if (cupAnimationRef.current) {
-        cupAnimationRef.current.stop()
-      }
-    }
-  }, [workTime]) // Actualizamos cuando cambia el tiempo de trabajo
+  // La animación de la taza ahora se maneja directamente en el componente CoffeeCup
 
   const handleButtonClick = () => {
     if (isActive) {
       // Si está activo, reiniciar
       resetTimer()
-      // Detener la animación de la taza
-      if (cupAnimationRef.current) {
-        cupAnimationRef.current.stop()
-      }
     } else {
       // Si no está activo, iniciar
       setIsActive(true)
-      
-      // Iniciar la animación de la taza
-      if (cupAnimationRef.current) {
-        // Configurar la duración correcta según el modo actual
-        const duration = isWorking ? workTime * 60 : breakTime * 60
-        cupAnimationRef.current.setPomodoroDuration(duration)
-        
-        if (isWorking) {
-          cupAnimationRef.current.start() // Iniciar vaciado en modo trabajo
-        } else {
-          cupAnimationRef.current.refill(breakTime * 60) // Iniciar llenado en modo descanso
-        }
-      }
     }
   }
 
