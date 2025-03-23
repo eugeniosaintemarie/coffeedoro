@@ -1,27 +1,28 @@
-import type { FC } from "react"
+"use client"
 
-interface CoffeeCupProps {
-  percentage: number
-  isWorking: boolean
-  isActive: boolean
-}
+import { useRef, useState, useEffect } from "react"
 
-// Componente que muestra una taza de café con nivel según el porcentaje
-const CoffeeCup: FC<CoffeeCupProps> = ({ percentage, isWorking, isActive }) => {
-  // Calculamos la posición del fondo según el porcentaje
-  // En modo trabajo, el café debe disminuir (100% al inicio, 0% al final)
-  // En modo descanso, el café debe aumentar (0% al inicio, 100% al final)
-  const coffeeLevel = isWorking ? percentage : 100 - percentage
-  // Invertimos la lógica para que el café se vacíe visualmente (130px es vacío, 0px es lleno)
-  const backgroundPosition = `0 ${(coffeeLevel * 130 / 100)}px`
-  
+const CoffeeCup = () => {
+  const [coffeeHeight, setCoffeeHeight] = useState(50)
+  const [isActive, setIsActive] = useState(true)
+  const cupRef = useRef<HTMLDivElement>(null)
+
+  const backgroundPosition = `0 ${100 - (coffeeHeight / 150) * 100}%`
+
+  useEffect(() => {
+    if (cupRef.current) {
+      cupRef.current.style.setProperty("--coffee-height", `${coffeeHeight}px`)
+    }
+  }, [coffeeHeight])
+
   return (
     <div className="flex items-center justify-center my-8">
-      <div 
+      <div
+        ref={cupRef}
         className="cup"
         style={{
           backgroundPosition: backgroundPosition,
-          transition: "background-position 0.5s ease-in-out"
+          // No es necesario establecer --coffee-height aquí ya que lo hacemos en el useEffect
         }}
       >
         {isActive && (

@@ -1,3 +1,85 @@
+/* Estilos de la taza de café exactamente como en el diseño original */
+.cup {
+  position: relative;
+  width: 220px;
+  height: 180px;
+  border: 8px solid #F5F5F5;
+  border-radius: 10px 10px 60px 75px;
+  background: url("/coffee-pattern.png");
+  background-repeat: repeat-x;
+  background-position: 0 130px;
+  background-color: #795548;
+  transition: background-position 0.3s linear; /* Transición más suave y lineal */
+  overflow: visible; /* Cambiado de hidden a visible para mostrar el mango */
+  margin-right: 74px; /* Añadido margen para dar espacio al mango */
+}
+
+/* Estilo para el nivel de café usando CSS variables */
+.cup::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--coffee-height, 130px); /* Usa la variable CSS con valor por defecto */
+  background-color: #795548; /* Color del café */
+  border-radius: 0 0 50px 65px;
+  transition: height 0.5s linear; /* Transición más suave para el vaciado */
+  z-index: -1; /* Asegura que el café esté detrás del borde de la taza */
+}
+
+.cup .cup-handle {
+  position: absolute;
+  top: 10px;
+  right: -74px;
+  width: 65px;
+  height: 120px;
+  border: 12px solid #F5F5F5;
+  border-radius: 20px 10px 50px 20px;
+}
+
+.cup .steam {
+  position: absolute;
+  border-radius: 10px 2px;
+  width: 8px;
+  animation: steaming 2s infinite;
+  background: #CFD8DC;
+}
+
+@keyframes steaming {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0.8px);
+    transform: translateY(-10px);
+  }
+}
+
+.cup .steam:nth-child(1) {
+  top: -70px;
+  left: 65px;
+  height: 30px;
+  opacity: 0.3;
+  animation-delay: 0.2s;
+}
+
+.cup .steam:nth-child(2) {
+  top: -120px;
+  left: 95px;
+  height: 50px;
+  opacity: 0.5;
+  animation-delay: 0.6s;
+}
+
+.cup .steam:nth-child(3) {
+  top: -90px;
+  left: 125px;
+  height: 40px;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -116,11 +198,24 @@ body {
   background-repeat: repeat-x;
   background-position: 0 130px;
   background-color: #795548;
-  transition: background-position 0.5s ease-in-out;
-  overflow: hidden;
+  transition: background-position 0.3s linear; /* Transición más suave y lineal */
+  overflow: visible; /* Cambiado de hidden a visible para mostrar el mango */
+  margin-right: 74px; /* Añadido margen para dar espacio al mango */
 }
 
-
+/* Estilo para el nivel de café usando CSS variables */
+.cup::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--coffee-height, 130px); /* Usa la variable CSS con valor por defecto */
+  background-color: #795548; /* Color del café */
+  border-radius: 0 0 50px 65px;
+  transition: height 0.3s linear; /* Transición suave para el vaciado */
+  z-index: -1; /* Asegura que el café esté detrás del borde de la taza */
+}
 
 .cup .cup-handle {
   position: absolute;
