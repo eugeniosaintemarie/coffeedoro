@@ -1,73 +1,49 @@
+/**
+ * Componente que representa una taza de café animada
+ * 
+ * Este componente muestra una taza de café con vapor cuando el temporizador
+ * está activo, proporcionando una representación visual del estado del temporizador.
+ */
+
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef } from "react"
+import { formatTime } from "@/lib/timerUtils"
 
 interface CoffeeCupProps {
+  /**
+   * Porcentaje de llenado de la taza (0-100)
+   */
   percentage: number
+  
+  /**
+   * Indica si el temporizador está en periodo de trabajo o descanso
+   */
   isWorking: boolean
+  
+  /**
+   * Indica si el temporizador está activo o pausado
+   */
   isActive: boolean
+
+  /**
+   * Tiempo restante en segundos
+   */
+  timeLeft: number
 }
 
-const CoffeeCup = ({ percentage, isWorking, isActive }: CoffeeCupProps) => {
+/**
+ * Componente que muestra una taza de café con animación de vapor
+ */
+const CoffeeCup = ({ isActive, percentage, isWorking, timeLeft }: CoffeeCupProps) => {
   const cupRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number | null>(null)
-  const lastTimeRef = useRef<number | null>(null)
-  const [coffeeHeight, setCoffeeHeight] = useState(130) // Altura inicial en px
+  const initialCoffeeHeight = 130 // Altura máxima del café en px
 
-  // Calcular la posición de fondo basada en la altura del café
-  const backgroundPosition = `0 ${100 - (coffeeHeight / 150) * 100}%`
-  
-  // Función para animar el café usando requestAnimationFrame
-  const animateCoffee = (timestamp: number) => {
-    if (!lastTimeRef.current) {
-      lastTimeRef.current = timestamp
-    }
+  // Posición de fondo fija para la taza estática
+  const backgroundPosition = "0 0%"
 
-    const elapsed = timestamp - lastTimeRef.current
-    lastTimeRef.current = timestamp
-
-    // Calcular la altura objetivo basada en el porcentaje
-    const targetHeight = (percentage / 100) * 130 // 130px es la altura máxima del café
-    
-    // Animación suave hacia el valor objetivo
-    if (Math.abs(coffeeHeight - targetHeight) > 0.5) {
-      // Velocidad de animación ajustable
-      const speed = isWorking ? 0.1 : 0.05 // Más rápido al vaciar, más lento al llenar
-      const step = elapsed * speed
-      
-      setCoffeeHeight(prev => {
-        if (prev > targetHeight) {
-          return Math.max(targetHeight, prev - step)
-        } else {
-          return Math.min(targetHeight, prev + step)
-        }
-      })
-    }
-
-    animationRef.current = requestAnimationFrame(animateCoffee)
-  }
-
-  // Iniciar/detener animación basado en isActive
-  useEffect(() => {
-    if (isActive) {
-      animationRef.current = requestAnimationFrame(animateCoffee)
-    } else if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current)
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [isActive, percentage])
-
-  // Actualizar la variable CSS cuando cambia la altura del café
-  useEffect(() => {
-    if (cupRef.current) {
-      cupRef.current.style.setProperty("--coffee-height", `${coffeeHeight}px`)
-    }
-  }, [coffeeHeight])
+  // Formatea el tiempo restante en formato MM:SS
+  const formattedTime = formatTime(timeLeft)
 
   return (
     <div className="flex items-center justify-center my-8">
@@ -76,17 +52,21 @@ const CoffeeCup = ({ percentage, isWorking, isActive }: CoffeeCupProps) => {
         className="cup"
         style={{
           backgroundPosition: backgroundPosition,
-          // No es necesario establecer --coffee-height aquí ya que lo hacemos en el useEffect
-        }}
+          "--coffee-height": `${initialCoffeeHeight}px`
+        } as React.CSSProperties}
       >
-        {/* Mostrar vapor solo cuando está activo y el café está caliente (por encima del 70%) */}
-        {isActive && percentage > 70 && (
+        {/* Mostrar vapor solo cuando está activo */}
+        {isActive && (
           <>
             <span className="steam"></span>
             <span className="steam"></span>
             <span className="steam"></span>
           </>
         )}
+        {/* Mostrar el contador dentro de la taza */}
+        <div className="cup-timer">
+          {formattedTime}
+        </div>
         <div className="cup-handle"></div>
       </div>
     </div>
