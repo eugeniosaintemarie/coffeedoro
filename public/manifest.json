@@ -1,7 +1,7 @@
 {
-  "name": "Coffee Pomodoro Timer",
-  "short_name": "Pomodoro",
-  "description": "A pomodoro timer with an animated coffee cup",
+  "name": "Coffeedoro",
+  "short_name": "Cofeedoro",
+  "description": "A pomodoro coffee-style timer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

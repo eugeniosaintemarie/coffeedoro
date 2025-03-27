@@ -45,13 +45,21 @@ export default function PomodoroTimer() {
 
   // Listen for the beforeinstallprompt event to enable install button
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
+    const [hasShownInstallPrompt, setHasShownInstallPrompt] = useState(false)
+
+const handleBeforeInstallPrompt = (e: Event) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault()
       // Stash the event so it can be triggered later
       setDeferredPrompt(e)
       // Update UI to notify the user they can install the PWA
       setIsInstallable(true)
+
+      // Show install prompt only if it hasn't been shown before
+      if (!hasShownInstallPrompt) {
+        setHasShownInstallPrompt(true)
+        installPWA()
+      }
     }
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
@@ -260,7 +268,7 @@ export default function PomodoroTimer() {
           </div>
           <div className="timer-display">{formatTime(timeLeft)}</div>
         </div>
-        {/* Explicit handle element */}
+        {}
         <div className="cup-handle"></div>
       </div>
 
@@ -295,7 +303,7 @@ export default function PomodoroTimer() {
         />
       </div>
 
-      {/* Break Dialog */}
+      
       <Dialog open={showBreakDialog} onOpenChange={setShowBreakDialog}>
         <DialogContent>
           <DialogHeader>
@@ -308,7 +316,7 @@ export default function PomodoroTimer() {
         </DialogContent>
       </Dialog>
 
-      {/* Completed Dialog */}
+      
       <Dialog open={showCompletedDialog} onOpenChange={setShowCompletedDialog}>
         <DialogContent>
           <DialogHeader>
@@ -321,7 +329,7 @@ export default function PomodoroTimer() {
         </DialogContent>
       </Dialog>
 
-      {/* Footer */}
+      
       <footer className="footer">
         <a href="https://eugeniosaintemarie.github.io/" target="_blank" rel="noopener noreferrer">
           ∃ugenio © {new Date().getFullYear()}
