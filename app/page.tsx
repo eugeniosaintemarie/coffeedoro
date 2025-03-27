@@ -233,13 +233,13 @@ export default function PomodoroTimer() {
       {notificationPermission !== "granted" && (
         <div className="absolute top-4 left-0 right-0 flex justify-center">
           <div className="bg-yellow-800 text-white px-4 py-2 rounded-md flex items-center gap-2">
-            <span>Para recibir notificaciones, habilita los permisos</span>
+            <span>Allow notifications</span>
             <Button
               onClick={requestNotificationPermission}
               variant="outline"
               className="text-xs h-8 bg-yellow-700 hover:bg-yellow-600 border-none"
             >
-              Permitir
+              Allow
             </Button>
           </div>
         </div>
