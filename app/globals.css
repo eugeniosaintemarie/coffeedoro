@@ -175,3 +175,43 @@
   color: #ffffff;
 }
 
+/* Animación para el texto del footer */
+.animated-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.first-letter {
+  display: inline-block;
+  animation: slideInFromRight 1.2s ease forwards;
+  opacity: 0;
+}
+
+.remaining-text {
+  display: inline-block;
+  animation: slideInFromLeft 1.2s ease 0.3s forwards;
+  opacity: 0;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
