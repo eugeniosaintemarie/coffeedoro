@@ -1,2 +1,35 @@
-
-
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- Fondo oscuro -->
+  <rect width="1280" height="720" fill="#000000"/>
+  
+  <!-- Interfaz de la aplicación -->
+  <rect x="240" y="60" width="800" height="600" rx="20" ry="20" fill="#111111" stroke="#333333" stroke-width="2"/>
+  
+  <!-- Título de la aplicación -->
+  <text x="640" y="120" font-family="Arial" font-size="40" fill="#ffffff" text-anchor="middle">Coffeedoro</text>
+  
+  <!-- Temporizador -->
+  <text x="640" y="250" font-family="Arial" font-size="80" fill="#ffffff" text-anchor="middle">25:00</text>
+  
+  <!-- Botones de control -->
+  <circle cx="640" cy="350" r="50" fill="#333333" stroke="#555555" stroke-width="2"/>
+  <polygon points="625,325 625,375 665,350" fill="#ffffff"/>
+  
+  <!-- Taza de café (versión grande) -->
+  <g transform="translate(640, 500) scale(0.8)">
+    <!-- Taza -->
+    <ellipse cx="0" cy="-50" rx="80" ry="30" fill="#f5f5f5" stroke="#d0d0d0" stroke-width="2"/>
+    <path d="M-80,-50 L-80,30 C-80,60 -40,80 0,80 C40,80 80,60 80,30 L80,-50" fill="#f5f5f5" stroke="#d0d0d0" stroke-width="2"/>
+    <ellipse cx="0" cy="30" rx="80" ry="30" fill="none" stroke="#d0d0d0" stroke-width="2"/>
+    
+    <!-- Asa de la taza -->
+    <path d="M80,-40 C110,-40 120,-20 120,0 C120,20 100,30 80,30" fill="none" stroke="#d0d0d0" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Café dentro de la taza -->
+    <ellipse cx="0" cy="-50" rx="70" ry="20" fill="#4a2c2a"/>
+    <ellipse cx="0" cy="-50" rx="30" ry="10" fill="#6b4c3d"/>
+    
+    <!-- Reflejo en el café -->
+    <path d="M-20,-55 C-10,-60 10,-60 20,-55" fill="none" stroke="#d0d0d0" stroke-width="2" opacity="0.7"/>
+  </g>
+</svg>

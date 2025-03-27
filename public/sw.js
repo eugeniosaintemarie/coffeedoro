@@ -2,6 +2,10 @@ const CACHE_NAME = "coffee-pomodoro-v1"
 const urlsToCache = [
   "/",
   "/manifest.json",
+  "/favicon.ico",
+  "/favicon.svg",
+  "/favicon-16x16.png",
+  "/favicon-32x32.png",
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/screenshots/screenshot1.png",
@@ -74,7 +78,7 @@ self.addEventListener("push", (event) => {
   const options = {
     body: data.body,
     icon: "/icons/icon-192x192.png",
-    badge: "/icons/icon-192x192.png",
+    badge: "/favicon-32x32.png",
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
