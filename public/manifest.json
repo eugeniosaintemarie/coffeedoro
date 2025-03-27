@@ -1,6 +1,6 @@
 {
   "name": "Coffeedoro",
-  "short_name": "Cofeedoro",
+  "short_name": "Coffeedoro",
   "description": "A pomodoro coffee-style timer",
   "start_url": "/",
   "display": "standalone",
