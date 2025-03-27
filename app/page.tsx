@@ -71,7 +71,7 @@ export default function PomodoroTimer() {
 
             if (isBreak) {
               // Break completed - show notification and dialog
-              showNotification("¡Ciclo terminado!", "Has completado un ciclo completo de trabajo y descanso.")
+              showNotification("¡Cycle completed!", "")
               setShowCompletedDialog(true)
               setIsRunning(false)
               setIsBreak(false)
@@ -80,7 +80,7 @@ export default function PomodoroTimer() {
             } else {
               // Work completed - show notification and dialog, empty cup completely
               setFillLevel(0) // Empty the cup completely
-              showNotification("¡Es momento del break!", "Has completado tu sesión de trabajo. Tómate un descanso.")
+              showNotification("¡Break moment!", "")
               setShowBreakDialog(true)
               setIsRunning(false)
               return breakTime * 60
@@ -299,11 +299,11 @@ export default function PomodoroTimer() {
       <Dialog open={showBreakDialog} onOpenChange={setShowBreakDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>¡Es momento del break!</DialogTitle>
-            <DialogDescription>Has completado tu sesión de trabajo. Tómate un descanso.</DialogDescription>
+            <DialogTitle>¡Break moment!</DialogTitle>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={startBreak}>Comenzar Break</Button>
+            <Button onClick={startBreak}>Start</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -312,11 +312,11 @@ export default function PomodoroTimer() {
       <Dialog open={showCompletedDialog} onOpenChange={setShowCompletedDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>¡Ciclo terminado!</DialogTitle>
-            <DialogDescription>Has completado un ciclo completo de trabajo y descanso.</DialogDescription>
+            <DialogTitle>¡Cycle completed!</DialogTitle>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={() => setShowCompletedDialog(false)}>Continuar</Button>
+            <Button onClick={() => setShowCompletedDialog(false)}>Restart</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -324,7 +324,7 @@ export default function PomodoroTimer() {
       {/* Footer */}
       <footer className="footer">
         <a href="https://eugeniosaintemarie.github.io/" target="_blank" rel="noopener noreferrer">
-          ∃ugenio © 2025
+          ∃ugenio © {new Date().getFullYear()}
         </a>
       </footer>
     </div>

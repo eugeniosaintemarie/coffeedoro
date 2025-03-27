@@ -9,14 +9,14 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/favicon-16x16.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48dGV4dCB4PSIwIiB5PSIxNCI+4oC9PC90ZXh0Pjwvc3ZnPg==",
       "sizes": "16x16",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "/favicon-32x32.png",
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48dGV4dCB4PSIwIiB5PSIzMSI+4oC9PC90ZXh0Pjwvc3ZnPg==",
       "sizes": "32x32",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
       "src": "/icons/icon-192x192.png",

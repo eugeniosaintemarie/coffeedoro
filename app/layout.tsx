@@ -9,8 +9,8 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Coffee Pomodoro Timer",
-  description: "A pomodoro timer with an animated coffee cup",
+  title: "Coffeedoro",
+  description: "A pomodoro coffee-style timer",
   manifest: "/manifest.json",
   themeColor: "#000000",
   icons: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Coffee Pomodoro",
+    title: "Coffeedoro",
   },
   viewport: {
     width: "device-width",
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
-  applicationName: "Coffee Pomodoro",
+  applicationName: "Coffeedoro",
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: "website",
-    siteName: "Coffee Pomodoro",
-    title: "Coffee Pomodoro Timer",
-    description: "A pomodoro timer with an animated coffee cup",
+    siteName: "Coffeedoro",
+    title: "Coffeedoro",
+    description: "A pomodoro coffee-style timer",
   },
     generator: 'v0.dev'
 }
