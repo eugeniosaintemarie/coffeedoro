@@ -226,29 +226,6 @@ export default function PomodoroTimer() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black p-4">
-      {notificationPermission !== "granted" && (
-        <div className="absolute top-4 left-0 right-0 flex justify-center">
-          <div className="bg-yellow-800 text-white px-4 py-2 rounded-md flex items-center gap-2">
-            <span>Allow notifications</span>
-            <Button
-              onClick={requestNotificationPermission}
-              variant="outline"
-              className="text-xs h-8 bg-yellow-700 hover:bg-yellow-600 border-none"
-            >
-              Allow
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {isInstallable && (
-        <div className="absolute top-4 right-4">
-          <Button onClick={installPWA} variant="outline" className="text-sm bg-blue-700 hover:bg-blue-600 border-none">
-            Instalar App
-          </Button>
-        </div>
-      )}
-
       <div className="cup-container relative mb-12">
         <div className="cup">
           <div className="coffee-container">
