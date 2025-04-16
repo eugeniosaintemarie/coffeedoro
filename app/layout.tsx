@@ -5,6 +5,7 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { PWARegister } from "./pwa"
 import { Suspense } from "react"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -73,6 +74,18 @@ export default function RootLayout({
           </Suspense>
           {children}
         </ThemeProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LNQ47VG50M"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-LNQ47VG50M');
+          `}
+        </Script>
       </body>
     </html>
   )
