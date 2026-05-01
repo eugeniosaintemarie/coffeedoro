@@ -296,7 +296,7 @@ export default function PomodoroTimer() {
 
 
       <footer className="footer">
-        <a href="https://eugeniosaintemarie.github.io/" target="_blank" rel="noopener noreferrer">
+        <a data-repo="." href="#" target="_blank" rel="noopener noreferrer">
           <span className="animated-text">
             <span className="first-letter">∃</span>
             <span className="remaining-text">ugenio</span>
@@ -304,6 +304,30 @@ export default function PomodoroTimer() {
           </span>
         </a>
       </footer>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (() => {
+              const siteBaseURL = "https://eugeniosaintemarie.github.io".replace(/\/$/, "");
+              const buildRepoURL = (repoName, query = "") => {
+                const url = new URL(repoName + "/", siteBaseURL + "/");
+                if (query) {
+                  url.search = query.startsWith("?") ? query : "?" + query;
+                }
+                return url.toString();
+              };
+              document.querySelectorAll("[data-repo]").forEach((link) => {
+                const repoName = link.dataset.repo;
+                if (!repoName) {
+                  return;
+                }
+                link.href = buildRepoURL(repoName, link.dataset.query || "");
+              });
+            })();
+          `,
+        }}
+      />
     </div>
   )
 }
